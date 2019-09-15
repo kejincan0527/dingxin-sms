@@ -60,7 +60,7 @@ require 'dingxin/sms'
 可以改为 Github 安装源，例如 Rails Gemfile 文件引用可以改为下面格式，即可正确安装。
 
 ```ruby
-gem 'dingxin-sms', '0.0.1', git: 'https://github.com/kejincan0527/dingxin-sms.git'
+gem 'dingxin-sms', '0.0.2', git: 'https://github.com/kejincan0527/dingxin-sms.git'
 ```
 
 ## Usage 使用
@@ -130,6 +130,8 @@ mobile = '15912345678'
 tpl_id = 'TP1711063'
 param = 'asin:B01E7LLKT2'
 Dingxin::Sms.send(mobile, tpl_id, param)
+
+Dingxin::Sms.long_send(mobile, tpl_id, param) # 134字符超长短信
 ...
 ```
 

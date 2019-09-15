@@ -35,9 +35,24 @@ module Dingxin
           headers: { "Authorization" => "APPCODE #{configuration.app_code}" })
       end
 
+      # curl -i -X POST 'http://dingxin2.market.alicloudapi.com/dx/longSendSms?mobile=159XXXX9999&param=param&tpl_id=TP1802095'  -H 'Authorization:APPCODE 你自己的AppCode'
+      def long_send(mobile, tpl_id, param)
+        Typhoeus.post(get_long_url({
+          'mobile' => mobile,
+          'tpl_id' => tpl_id,
+          'param' => param
+          }),
+          headers: { "Authorization" => "APPCODE #{configuration.app_code}" })
+      end
+
       def get_url(params)
         coded_params = canonicalized_query_string(params)
         url = 'http://dingxin.market.alicloudapi.com/dx/sendSms?' + coded_params
+      end
+
+      def get_long_url(params)
+        coded_params = canonicalized_query_string(params)
+        url = 'http://dingxin2.market.alicloudapi.com/dx/longSendSms?' + coded_params
       end
 
       # 对字符串进行 PERCENT 编码
